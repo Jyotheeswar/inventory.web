@@ -1,0 +1,77 @@
+<div>
+
+  <div> INVENTORY DATA</div>
+  <table>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        NAME
+      </th>
+      <th>
+        KERNALS
+      </th>
+    </tr>
+    <tr *ngFor="let item of inventoryData?.inventory">
+      <td>
+        {{item.id}}
+      </td>
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{item.kernels}}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div> REQUESTS DATA</div>
+<div>
+  <table>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        InventoryId
+      </th>
+      <th>
+        RequestedKernels
+      </th>
+    </tr>
+    <tr *ngFor="let item of inventoryData?.requests">
+      <td>
+        {{item.id}}
+      </td>
+      <td>
+        {{item.inventoryId}}
+      </td>
+      <td>
+        {{item.requestedKernels}}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <label> </label>
+  <select class="text-box" [(ngModel)]="selectedValue" style="    width: 76px;
+  height: 30px;">
+    <option *ngFor="let item of inventoryList" [value]="item.label">{{item.value}}</option>
+  </select>
+  <input type="number" #inputKernals>
+  <button (click)="CheckRequestedKernals(inputKernals.value)">CheckRequest</button>
+</div>
+
+
+<div *ngIf="inventory">
+
+  <p style="color: green;"> your requested kernals are available</p>
+
+</div>
+<div *ngIf="noInventory">
+
+  <p style="color: red;"> your requested kernals are not available</p>
+</div>
